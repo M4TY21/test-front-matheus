@@ -1,11 +1,13 @@
+import React from 'react'
+
+import { Header } from '../../components/Header'
+
+import { Container } from './styles'
+
 export function Cart() {
   return (
     <Container>
-      <Content>SACOLA</Content>
-
-      <Content>PAGAMENTO</Content>
-
-      <Content>CONFIRMAÇÃO</Content>
+      <Header />
     </Container>
   )
 }
