@@ -1,6 +1,14 @@
 import React from 'react'
-import './App.css'
+import { ProductsProvider } from './hooks/products'
+import { GlobalStyle } from './styles/global'
 
-const App = () => <div className="App">Boa sorte! 🚀</div>
+function App() {
+  return (
+    <ProductsProvider>
+      <GlobalStyle />
+      <Cart />
+    </ProductsProvider>
+  )
+}
 
 export default App
