@@ -11,6 +11,8 @@ export function ProductsList() {
 
       <Content>
         <Card />
+        <Card />
+        <Card />
       </Content>
     </Container>
   )
