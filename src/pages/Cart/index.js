@@ -8,7 +8,7 @@ import { Container } from './styles'
 export function Cart() {
   return (
     <Container>
-      <Header />
+      <Header route="SACOLA" />
       <ProductsList />
     </Container>
   )

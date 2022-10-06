@@ -5,13 +5,13 @@ import { api } from '../services/api'
 const ProductsContext = createContext({})
 
 function ProductsProvider({ children }) {
-  const [Products, setProducts] = useState([])
+  const [Products, setProducts] = useState({})
   const [loading, setLoading] = useState(true)
 
   async function fetchProducts() {
-    const response = await api.get('')
-    setProducts(response.data)
-    setLoading(false)
+    const response = await api.get()
+    console.log(response.data)
+    setProducts(response)
   }
 
   return (

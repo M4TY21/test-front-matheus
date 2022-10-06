@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { ProductsProvider } from './hooks/products'
-import { Cart } from './pages/Cart'
+import { AppRoutes } from './routes'
 
 import { GlobalStyle } from './styles/global'
 
@@ -9,7 +9,7 @@ function App() {
   return (
     <ProductsProvider>
       <GlobalStyle />
-      <Cart />
+      <AppRoutes />
     </ProductsProvider>
   )
 }

@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 
+import { Link } from 'react-router-dom'
+
 export const Container = styled.header`
   display: flex;
   align-items: center;
@@ -14,10 +16,12 @@ export const Container = styled.header`
   background: #fff;
 `
 
-export const Content = styled.h2`
+export const Navigation = styled(Link)`
   font-size: 13px;
   font-family: 'Roboto', sans-serif;
   font-weight: 700;
+  text-decoration: none;
 
-  color: #ff7800;
+  color: ${({ $atualRoute }) => ($atualRoute ? '#ff7800' : '#CCC')};
+  cursor: pointer;
 `
