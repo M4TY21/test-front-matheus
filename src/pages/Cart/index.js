@@ -1,15 +1,19 @@
 import React from 'react'
 
-import { Header } from '../../components/Header'
+import { PriceContainer } from '../../components/PriceContainer'
 import { ProductsList } from '../../components/ProductsList'
+import { Header } from '../../components/Header'
 
-import { Container } from './styles'
+import { Container, Content } from './styles'
 
 export function Cart() {
   return (
     <Container>
       <Header route="SACOLA" />
-      <ProductsList />
+      <Content>
+        <ProductsList />
+        <PriceContainer />
+      </Content>
     </Container>
   )
 }

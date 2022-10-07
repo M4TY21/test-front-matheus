@@ -9,3 +9,10 @@ export const Container = styled.main`
 
   background: #eee;
 `
+
+export const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 60px;
+  gap: 20px;
+`
