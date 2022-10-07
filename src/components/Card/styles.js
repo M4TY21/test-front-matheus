@@ -24,6 +24,8 @@ export const Content = styled.div`
 `
 
 export const Title = styled.h2`
+  height: 45px;
+
   font-size: 13px;
   font-family: 'Roboto', sans-serif;
   font-weight: 400;

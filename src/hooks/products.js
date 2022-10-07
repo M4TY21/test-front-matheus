@@ -5,17 +5,25 @@ import { api } from '../services/api'
 const ProductsContext = createContext({})
 
 function ProductsProvider({ children }) {
-  const [Products, setProducts] = useState({})
+  const [products, setProducts] = useState([])
+  const [values, setValues] = useState({})
   const [loading, setLoading] = useState(true)
 
   async function fetchProducts() {
     const response = await api.get()
+    console.log(response.data.items)
+    setProducts(response.data.items)
+    setLoading(false)
+  }
+
+  async function fetchValues() {
+    const response = await api.get()
     console.log(response.data)
-    setProducts(response)
+    setValues(response.data)
   }
 
   return (
-    <ProductsContext.Provider value={{ Products, loading, fetchProducts }}>
+    <ProductsContext.Provider value={{ products, values, loading, fetchProducts, fetchValues }}>
       {children}
     </ProductsContext.Provider>
   )

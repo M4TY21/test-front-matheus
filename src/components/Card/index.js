@@ -2,15 +2,15 @@ import React from 'react'
 
 import { Container, ProductImg, Content, Title, Price } from './styles'
 
-export function Card() {
+export function Card({ imageUrl, name, price }) {
   return (
     <Container>
-      <ProductImg src="https://res.cloudinary.com/beleza-na-web/image/upload/f_auto,fl_progressive,q_auto:best/v1/imagens/2/loreal-professionnel-expert-absolut-repair-cortex-lipidium-mascara-de-reconstrucao-500g-24410-963234120108391775.png" />
+      <ProductImg src={imageUrl} />
 
       <Content>
-        <Title>L'Oréal Professionnel Expert Absolut Repair Cortex Lipidium</Title>
+        <Title>{name}</Title>
 
-        <Price>R$ 225,90</Price>
+        <Price>{price.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}</Price>
       </Content>
     </Container>
   )
