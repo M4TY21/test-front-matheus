@@ -11,15 +11,14 @@ function ProductsProvider({ children }) {
 
   async function fetchProducts() {
     const response = await api.get()
-    console.log(response.data.items)
     setProducts(response.data.items)
     setLoading(false)
   }
 
   async function fetchValues() {
     const response = await api.get()
-    console.log(response.data)
     setValues(response.data)
+    setLoading(false)
   }
 
   return (

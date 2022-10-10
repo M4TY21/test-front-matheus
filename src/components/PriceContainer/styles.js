@@ -7,7 +7,6 @@ export const Container = styled.div`
   gap: 9px;
 
   height: 129px;
-  width: 341px;
 
   border-radius: 3px;
   border: 1px solid #ccc;

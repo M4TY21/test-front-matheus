@@ -23,7 +23,7 @@ export const Content = styled.div`
   gap: 15px;
 
   height: 325px;
-  width: 341px;
+
   border-radius: 3px;
   background-color: #fff;
   box-shadow: 1px 1px 5px 0 rgba;

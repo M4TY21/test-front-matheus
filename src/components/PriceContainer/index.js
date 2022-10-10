@@ -5,28 +5,40 @@ import { useProducts } from '../../hooks/products'
 import { Container, Content, Price, Discount, TotalPrice } from './styles'
 
 export function PriceContainer() {
-  const { values, fetchPrices } = useProducts()
+  const { values, fetchValues } = useProducts()
+
+  useEffect(() => {
+    fetchValues()
+  }, [])
 
   return (
     <Container>
       <Content>
         <Price>PRODUTOS</Price>
-        <Price>R$ 624,80</Price>
+        <Price>
+          {values.subTotal?.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
+        </Price>
       </Content>
 
       <Content>
         <Price>FRETE</Price>
-        <Price>R$ 5,30</Price>
+        <Price>
+          {values.shippingTotal?.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
+        </Price>
       </Content>
 
       <Content>
         <Discount>DESCONTO</Discount>
-        <Discount>- R$ 30,00</Discount>
+        <Discount>
+          - {values.discount?.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
+        </Discount>
       </Content>
 
       <Content>
         <TotalPrice>TOTAL</TotalPrice>
-        <TotalPrice>R$ 30,00</TotalPrice>
+        <TotalPrice>
+          {values.total?.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
+        </TotalPrice>
       </Content>
     </Container>
   )

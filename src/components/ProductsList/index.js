@@ -20,7 +20,7 @@ export function ProductsList() {
         {products.map((item) => (
           <Card
             key={item.product.sku}
-            imageUrl={item.product.imageObjects[0].medium}
+            imageUrl={item.product.imageObjects[0]?.medium}
             name={item.product.name}
             price={item.product.priceSpecification.price}
           />

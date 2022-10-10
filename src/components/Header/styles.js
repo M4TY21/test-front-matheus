@@ -9,7 +9,7 @@ export const Container = styled.header`
   margin-bottom: 10px;
 
   width: 100%;
-  height: 40px;
+  min-height: 40px;
 
   border-radius: 3px;
   box-shadow: 1px 1px 5px 0 rgba(0, 0, 29, 0.22);
