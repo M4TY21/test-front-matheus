@@ -10,7 +10,7 @@ export function ProductsList() {
 
   useEffect(() => {
     fetchProducts()
-  }, [])
+  }, []) // eslint-disable-next-lin
 
   return (
     <Container>

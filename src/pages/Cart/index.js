@@ -14,7 +14,7 @@ export function Cart() {
       <Content>
         <ProductsList />
         <PriceContainer />
-        <Button title="SEGUIR PARA O PAGAMENTO" />
+        <Button title="SEGUIR PARA O PAGAMENTO" link="/payment" />
       </Content>
     </Container>
   )

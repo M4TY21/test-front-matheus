@@ -9,7 +9,7 @@ export function PriceContainer() {
 
   useEffect(() => {
     fetchValues()
-  }, [])
+  }, []) // eslint-disable-next-lin
 
   return (
     <Container>
