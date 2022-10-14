@@ -1,59 +1,88 @@
 import React from 'react'
 
+import { Formik } from 'formik'
+import { schema } from '../../services/schema'
+
 import { PriceContainer } from '../../components/PriceContainer'
 import { Button } from '../../components/Button'
 import { Header } from '../../components/Header'
 
-import { schema } from '../../services/schema'
-
 import {
   BigInput,
+  InputContainer,
   Container,
   Content,
-  ErrorInput,
+  ErrorMensage,
   Form,
   FormContainer,
   Label,
-  Title
+  Title,
+  SmallInputContainer,
+  SmallInput
 } from './styles'
-import { Formik } from 'formik'
 
 export function Payment() {
   return (
     <Container>
       <Header route="PAGAMENTO" />
+
       <Content>
         <Title>CARTÃO DE CRÉDITO</Title>
 
-        <Form
+        <Formik
           initialValues={{ numberCard: '', name: '', venciment: '', CVV: '' }}
           validationSchema={schema}
+          onChange={({ values }) => {
+            console.log('afsddsa')
+          }}
         >
-          {({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
-            <form onSubmit={handleSubmit}>
+          {({ values, errors, touched, handleChange, handleSubmit, isSubmitting }) => (
+            <Form onSubmit={handleSubmit}>
               <FormContainer>
-                <Label>Número do cartão:</Label>
-                <BigInput
-                  placeholder="____.____.____.____"
-                  name="numberCard"
-                  value={values.numberCard}
-                  maxLength="19"
-                />
-                {errors.numberCard && touched.numberCard && (
-                  <ErrorInput>{errors.numberCard}</ErrorInput>
-                )}
+                <InputContainer>
+                  <Label>Número do cartão:</Label>
+                  <BigInput
+                    placeholder="____.____.____.____"
+                    name="numberCard"
+                    value={values.numberCard}
+                    maxLength="19"
+                    onChange={handleChange}
+                  />
+                  {errors.numberCard && touched.numberCard && (
+                    <ErrorMensage>{errors.numberCard}</ErrorMensage>
+                  )}
+                </InputContainer>
 
-                <Label>Nome do Titular:</Label>
-                <BigInput placeholder="Como no cartão" name="name" value={values.name} />
-                {errors.name && touched.name && <ErrorInput>{errors.name}</ErrorInput>}
+                <InputContainer>
+                  <Label>Nome do Titular:</Label>
+                  <BigInput
+                    placeholder="Como no cartão"
+                    name="name"
+                    value={values.name}
+                    onChange={handleChange}
+                  />
+                  {errors.name && touched.name && <ErrorMensage>{errors.name}</ErrorMensage>}
+                </InputContainer>
+
+                <SmallInputContainer>
+                  <InputContainer>
+                    <Label>Validade (mês/ano):</Label>
+                    <SmallInput />
+                  </InputContainer>
+
+                  <InputContainer>
+                    <Label>CVV:</Label>
+                    <SmallInput />
+                  </InputContainer>
+                </SmallInputContainer>
               </FormContainer>
 
               <PriceContainer />
 
               <Button title="FINALIZAR O PEDIDO" type="submit" />
-            </form>
+            </Form>
           )}
-        </Form>
+        </Formik>
       </Content>
     </Container>
   )
