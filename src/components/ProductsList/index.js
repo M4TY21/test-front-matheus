@@ -9,8 +9,8 @@ export function ProductsList() {
   const { products, fetchProducts } = useProducts()
 
   useEffect(() => {
-    fetchProducts()
-  }, []) // eslint-disable-next-lin
+    fetchProducts() // eslint-disable-next-line
+  }, [])
 
   return (
     <Container>

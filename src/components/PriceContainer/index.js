@@ -8,8 +8,8 @@ export function PriceContainer() {
   const { values, fetchValues } = useProducts()
 
   useEffect(() => {
-    fetchValues()
-  }, []) // eslint-disable-next-lin
+    fetchValues() // eslint-disable-next-line
+  }, [])
 
   return (
     <Container>

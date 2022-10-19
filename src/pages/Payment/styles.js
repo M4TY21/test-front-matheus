@@ -1,3 +1,4 @@
+import { ErrorMessage } from 'formik'
 import styled from 'styled-components'
 
 export const Container = styled.main`
@@ -48,7 +49,11 @@ export const FormContainer = styled.div`
   box-shadow: 1px 1px 5px 0 rgba(0, 0, 29, 0.22);
 `
 
-export const InputContainer = styled.div``
+export const InputContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+`
 
 export const Label = styled.label`
   font-size: 12px;
@@ -62,7 +67,7 @@ export const BigInput = styled.input`
   padding-left: 13px;
 
   height: 45px;
-  width: 320px;
+  width: 100%;
 
   border: 1px solid #e7e7e7;
   border-radius: 3px;
@@ -83,20 +88,39 @@ export const BigInput = styled.input`
   }
 `
 
-export const ErrorMensage = styled.p``
+export const YupMessage = styled(ErrorMessage)`
+  font-size: 12px;
+  font-family: 'Roboto', sans-serif;
+  color: #f30;
+`
 
 export const SmallInputContainer = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 20px;
+  justify-content: space-between;
 `
 
 export const SmallInput = styled.input`
+  padding-left: 13px;
+
   height: 45px;
-  width: 160px;
+  width: 155px;
 
   border-radius: 3px;
   background-color: #fff;
   border: 1px solid #e7e7e7;
   box-shadow: inset 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+
+  font-size: 16px;
+  font-family: 'Roboto', sans-serif;
+  color: #212122;
+
+  :focus {
+    border: 1px solid #a43287;
+    outline: 0;
+  }
+
+  ::placeholder {
+    color: #e0e7ee;
+  }
 `

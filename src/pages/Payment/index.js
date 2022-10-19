@@ -12,7 +12,7 @@ import {
   InputContainer,
   Container,
   Content,
-  ErrorMensage,
+  YupMessage,
   Form,
   FormContainer,
   Label,
@@ -22,6 +22,20 @@ import {
 } from './styles'
 
 export function Payment() {
+  function formatNumberCard(e) {
+    const valueLength = e.target.value.length
+    if (valueLength === 3 || valueLength === 7 || valueLength === 11) {
+      e.target.value += '.'
+    }
+  }
+
+  function formatVenciment(e) {
+    const valueLength = e.target.value.length
+    if (valueLength === 2) {
+      e.target.value += '/'
+    }
+  }
+
   return (
     <Container>
       <Header route="PAGAMENTO" />
@@ -30,13 +44,13 @@ export function Payment() {
         <Title>CARTÃO DE CRÉDITO</Title>
 
         <Formik
-          initialValues={{ numberCard: '', name: '', venciment: '', CVV: '' }}
+          initialValues={{ numberCard: '', name: '', venciment: '', cvv: '' }}
           validationSchema={schema}
-          onChange={({ values }) => {
-            console.log('afsddsa')
+          onSubmit={(values) => {
+            console.log(values)
           }}
         >
-          {({ values, errors, touched, handleChange, handleSubmit, isSubmitting }) => (
+          {({ errors, touched, handleSubmit, handleChange, isSubmitting }) => (
             <Form onSubmit={handleSubmit}>
               <FormContainer>
                 <InputContainer>
@@ -44,12 +58,15 @@ export function Payment() {
                   <BigInput
                     placeholder="____.____.____.____"
                     name="numberCard"
-                    value={values.numberCard}
-                    maxLength="19"
-                    onChange={handleChange}
+                    maxLength={15}
+                    type="text"
+                    onKeyPress={(e) => {
+                      handleChange(e)
+                      formatNumberCard(e)
+                    }}
                   />
                   {errors.numberCard && touched.numberCard && (
-                    <ErrorMensage>{errors.numberCard}</ErrorMensage>
+                    <YupMessage>{errors.numberCard[0]}</YupMessage>
                   )}
                 </InputContainer>
 
@@ -58,28 +75,45 @@ export function Payment() {
                   <BigInput
                     placeholder="Como no cartão"
                     name="name"
-                    value={values.name}
+                    type="text"
                     onChange={handleChange}
                   />
-                  {errors.name && touched.name && <ErrorMensage>{errors.name}</ErrorMensage>}
+                  {errors.name && touched.name && <YupMessage>{errors.name[0]}</YupMessage>}
                 </InputContainer>
 
                 <SmallInputContainer>
                   <InputContainer>
                     <Label>Validade (mês/ano):</Label>
-                    <SmallInput />
+                    <SmallInput
+                      placeholder="__/____"
+                      name="venciment"
+                      type="text"
+                      maxLength={7}
+                      onKeyPress={(e) => {
+                        handleChange(e)
+                        formatVenciment(e)
+                      }}
+                    />
                   </InputContainer>
 
                   <InputContainer>
                     <Label>CVV:</Label>
-                    <SmallInput />
+                    <SmallInput
+                      placeholder="___"
+                      name="cvv"
+                      type="text"
+                      maxLength={3}
+                      onChange={handleChange}
+                    />
                   </InputContainer>
                 </SmallInputContainer>
               </FormContainer>
 
               <PriceContainer />
 
-              <Button title="FINALIZAR O PEDIDO" type="submit" />
+              <Button type="submit" disblable={isSubmitting}>
+                FINALIZAR O PAGAMENTO
+              </Button>
             </Form>
           )}
         </Formik>
