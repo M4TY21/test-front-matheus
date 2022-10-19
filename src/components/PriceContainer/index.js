@@ -7,6 +7,8 @@ import { Container, Content, Price, Discount, TotalPrice } from './styles'
 export function PriceContainer() {
   const { values, fetchValues } = useProducts()
 
+  const total = values.subTotal + values.shippingTotal - values.discount
+
   useEffect(() => {
     fetchValues() // eslint-disable-next-line
   }, [])
@@ -37,7 +39,7 @@ export function PriceContainer() {
       <Content>
         <TotalPrice>TOTAL</TotalPrice>
         <TotalPrice>
-          {values.total?.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
+          {total?.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
         </TotalPrice>
       </Content>
     </Container>
