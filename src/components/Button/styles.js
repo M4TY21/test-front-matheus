@@ -22,7 +22,13 @@ export const Container = styled.button`
   transition: background 0.2s;
   cursor: pointer;
 
-  &:hover {
+  &:hover:not(:disabled) {
     background-color: #d45a00;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+
+    cursor: not-allowed;
   }
 `

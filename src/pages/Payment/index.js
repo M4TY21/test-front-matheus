@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import { Formik } from 'formik'
 import { schema } from '../../services/schema'
@@ -22,6 +22,8 @@ import {
 } from './styles'
 
 export function Payment() {
+  const [disableButton, setDisableButton] = useState(true)
+
   function formatNumberCard(e) {
     const valueLength = e.target.value.length
     if (valueLength === 3 || valueLength === 7 || valueLength === 11) {
@@ -33,6 +35,20 @@ export function Payment() {
     const valueLength = e.target.value.length
     if (valueLength === 2) {
       e.target.value += '/'
+    }
+  }
+
+  function emptyInputs(values) {
+    console.log(values)
+    if (
+      values.numberCard === '' ||
+      values.name === '' ||
+      values.venciment === '' ||
+      values.cvv === ''
+    ) {
+      setDisableButton(true)
+    } else {
+      setDisableButton(false)
     }
   }
 
@@ -50,7 +66,7 @@ export function Payment() {
             console.log(values)
           }}
         >
-          {({ errors, touched, handleSubmit, handleChange, isSubmitting }) => (
+          {({ values, errors, touched, handleSubmit, handleChange }) => (
             <Form onSubmit={handleSubmit}>
               <FormContainer>
                 <InputContainer>
@@ -64,6 +80,9 @@ export function Payment() {
                       handleChange(e)
                       formatNumberCard(e)
                     }}
+                    onKeyUp={() => {
+                      emptyInputs(values)
+                    }}
                   />
                   {errors.numberCard && touched.numberCard && (
                     <YupMessage>{errors.numberCard[0]}</YupMessage>
@@ -76,7 +95,12 @@ export function Payment() {
                     placeholder="Como no cartão"
                     name="name"
                     type="text"
-                    onChange={handleChange}
+                    onKeyPress={(e) => {
+                      handleChange(e)
+                    }}
+                    onKeyUp={() => {
+                      emptyInputs(values)
+                    }}
                   />
                   {errors.name && touched.name && <YupMessage>{errors.name[0]}</YupMessage>}
                 </InputContainer>
@@ -93,6 +117,9 @@ export function Payment() {
                         handleChange(e)
                         formatVenciment(e)
                       }}
+                      onKeyUp={() => {
+                        emptyInputs(values)
+                      }}
                     />
                   </InputContainer>
 
@@ -103,7 +130,12 @@ export function Payment() {
                       name="cvv"
                       type="text"
                       maxLength={3}
-                      onChange={handleChange}
+                      onKeyPress={(e) => {
+                        handleChange(e)
+                      }}
+                      onKeyUp={() => {
+                        emptyInputs(values)
+                      }}
                     />
                   </InputContainer>
                 </SmallInputContainer>
@@ -111,7 +143,7 @@ export function Payment() {
 
               <PriceContainer />
 
-              <Button type="submit" disblable={isSubmitting}>
+              <Button type="submit" disabled={disableButton}>
                 FINALIZAR O PAGAMENTO
               </Button>
             </Form>
